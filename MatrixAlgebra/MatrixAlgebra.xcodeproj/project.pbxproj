@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B16B46E91E585EB200B6EE47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B16B46E81E585EB200B6EE47 /* Main.storyboard */; };
 		E27F233E1E58512700140FFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F233D1E58512700140FFE /* AppDelegate.swift */; };
 		E27F23401E58512700140FFE /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F233F1E58512700140FFE /* MasterViewController.swift */; };
 		E27F23421E58512700140FFE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F23411E58512700140FFE /* DetailViewController.swift */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B16B46E81E585EB200B6EE47 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../../Desktop/Main.storyboard; sourceTree = "<group>"; };
 		E27F233A1E58512700140FFE /* MatrixAlgebra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatrixAlgebra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27F233D1E58512700140FFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E27F233F1E58512700140FFE /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +42,6 @@
 		E27F23311E58512700140FFE = {
 			isa = PBXGroup;
 			children = (
-				B16B46E81E585EB200B6EE47 /* Main.storyboard */,
 				E27F233C1E58512700140FFE /* MatrixAlgebra */,
 				E27F233B1E58512700140FFE /* Products */,
 			);
@@ -135,7 +132,6 @@
 				E27F234A1E58512700140FFE /* LaunchScreen.storyboard in Resources */,
 				E27F23471E58512700140FFE /* Assets.xcassets in Resources */,
 				E27F23451E58512700140FFE /* Main.storyboard in Resources */,
-				B16B46E91E585EB200B6EE47 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
