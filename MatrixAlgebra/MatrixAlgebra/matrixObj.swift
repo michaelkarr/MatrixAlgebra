@@ -39,7 +39,7 @@ class matrix {
         if (inBounds(rowSpot: rowSpot, colSpot: colSpot)) {
             return arr[rowSpot][colSpot]
         } else {
-            //return nil
+            return 0
         }
     }
     
