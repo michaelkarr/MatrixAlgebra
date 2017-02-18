@@ -3,6 +3,7 @@
 //  MatrixAlgebra
 //
 //  Created by Michael Karr on 2/18/17.
+//  Tree Hacks 2017 Team Norcliffe
 //  Copyright © 2017 Michael Karr. All rights reserved.
 //
 
@@ -17,7 +18,7 @@ class matrix {
         self.row = row
         self.col = col
         for _ in 0..<col {
-            arr.append(Array(count:row - 1, repeatedValue:Int()))
+            arr.append(Array(repeating:Int(), count:row - 1))
         }
         print("array \(arr)")
     }
@@ -26,7 +27,7 @@ class matrix {
     
     func setSpot(rowSpot: Int, colSpot: Int, val: Int) -> String {
         
-        if (inBounds(rowSpot, colSpot: colSpot)) {
+        if (inBounds(rowSpot: rowSpot, colSpot: colSpot)) {
             arr[rowSpot][colSpot] = val
             return ""
         } else {
@@ -35,7 +36,7 @@ class matrix {
     }
     
     func getSpot(rowSpot: Int, colSpot: Int) -> Int {
-        if (inBounds(rowSpot, colSpot: colSpot)) {
+        if (inBounds(rowSpot: rowSpot, colSpot: colSpot)) {
             return arr[rowSpot][colSpot]
         } else {
             //return nil

@@ -3,6 +3,7 @@
 //  MatrixAlgebra
 //
 //  Created by Michael Karr on 2/18/17.
+//  Tree Hacks 2017 Team Norcliffe
 //  Copyright © 2017 Michael Karr. All rights reserved.
 //
 
