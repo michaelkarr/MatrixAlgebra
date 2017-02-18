@@ -16,6 +16,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBAction func determinantButton(_ sender: Any) {
+    }
+    @IBAction func cofactorButton(_ sender: Any) {
+    }
+    @IBAction func transposeButton(_ sender: Any) {
+    }
+    @IBAction func inverseButton(_ sender: Any) {
+    }
+    @IBAction func Multiply(_ sender: Any) {
+    }
+    @IBAction func minusButton(_ sender: Any) {
+    }
+    @IBAction func plusButton(_
+        sender: Any) {
+        print("Add")
+    }
+    @IBAction func newMatrixButton(_ sender: Any) {
+        print("New Matrix")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

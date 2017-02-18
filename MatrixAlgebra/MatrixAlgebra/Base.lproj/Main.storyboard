@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="adQ-lJ-heo">
             <objects>
-                <viewController id="KVS-Fx-GiB" sceneMemberID="viewController">
+                <viewController id="KVS-Fx-GiB" customClass="ViewController" customModule="MatrixAlgebra" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1kG-Rv-zwi"/>
                         <viewControllerLayoutGuide type="bottom" id="Zjs-QJ-hOc"/>
@@ -32,31 +32,41 @@
                                 <rect key="frame" x="156" y="325" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="+"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-7O-dJ4">
-                                <rect key="frame" x="203" y="324" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="x"/>
+                                <connections>
+                                    <action selector="plusButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="r80-xz-y3w"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xer-kp-iWj">
-                                <rect key="frame" x="264" y="325" width="50" height="30"/>
+                                <rect key="frame" x="298" y="325" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Inverse"/>
+                                <connections>
+                                    <action selector="Inverse:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="HFI-NG-his"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-Dp-FiJ">
-                                <rect key="frame" x="351" y="324" width="72" height="30"/>
+                                <rect key="frame" x="375" y="325" width="72" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Transpose"/>
+                                <connections>
+                                    <action selector="transposeButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="lBB-W6-cuP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQm-Ga-Kcq">
                                 <rect key="frame" x="468" y="324" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cofactor"/>
+                                <connections>
+                                    <action selector="cofactorButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="qQS-a5-Dk2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuU-np-CAs">
-                                <rect key="frame" x="569" y="324" width="30" height="30"/>
+                                <rect key="frame" x="542" y="324" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Det"/>
+                                <state key="normal" title="Determinant"/>
+                                <connections>
+                                    <action selector="determinantButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="Mhe-Xq-4tL"/>
+                                </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWk-Qx-a9C">
                                 <rect key="frame" x="14" y="54" width="117" height="257"/>
@@ -67,6 +77,25 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="New Matrix"/>
+                                <connections>
+                                    <action selector="newMatrixButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="F5A-Rd-Llf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUZ-5x-IVQ">
+                                <rect key="frame" x="202" y="325" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="-"/>
+                                <connections>
+                                    <action selector="minusButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="DYp-vl-DxH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-7O-dJ4">
+                                <rect key="frame" x="240" y="325" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="x"/>
+                                <connections>
+                                    <action selector="Multiply:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="7J6-Qa-pNQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <accessibility key="accessibilityConfiguration">
