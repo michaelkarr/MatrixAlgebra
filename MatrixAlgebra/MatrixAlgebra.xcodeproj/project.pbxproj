@@ -13,6 +13,7 @@
 		E27F23451E58512700140FFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27F23431E58512700140FFE /* Main.storyboard */; };
 		E27F23471E58512700140FFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27F23461E58512700140FFE /* Assets.xcassets */; };
 		E27F234A1E58512700140FFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27F23481E58512700140FFE /* LaunchScreen.storyboard */; };
+		E27F23521E5853A100140FFE /* matrixObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F23511E5853A100140FFE /* matrixObj.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E27F23461E58512700140FFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27F23491E58512700140FFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27F234B1E58512700140FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E27F23511E5853A100140FFE /* matrixObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = matrixObj.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				E27F233D1E58512700140FFE /* AppDelegate.swift */,
 				E27F233F1E58512700140FFE /* MasterViewController.swift */,
 				E27F23411E58512700140FFE /* DetailViewController.swift */,
+				E27F23511E5853A100140FFE /* matrixObj.swift */,
 				E27F23431E58512700140FFE /* Main.storyboard */,
 				E27F23461E58512700140FFE /* Assets.xcassets */,
 				E27F23481E58512700140FFE /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			files = (
 				E27F23421E58512700140FFE /* DetailViewController.swift in Sources */,
 				E27F23401E58512700140FFE /* MasterViewController.swift in Sources */,
+				E27F23521E5853A100140FFE /* matrixObj.swift in Sources */,
 				E27F233E1E58512700140FFE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
