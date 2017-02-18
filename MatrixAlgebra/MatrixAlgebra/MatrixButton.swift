@@ -11,18 +11,14 @@ import UIKit
 
 struct MatrixButton {
     var name: String
-    var butToMatrix: matrix
+    var butToMatrix: Matrix
     var row: Int
     var col: Int
     
-    init(name: String, butToMatrix: matrix, row: Int, col: Int) {
+    init(name: String, butToMatrix: Matrix, row: Int, col: Int) {
         self.name = name
         self.butToMatrix = butToMatrix
         self.row = row
         self.col = col
-    }
-    
-    func getSize(name: String) -> (Int, Int) {
-        return (row, col)
     }
 }
