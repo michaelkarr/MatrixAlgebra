@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Detail View Controller-->
+        <!--View Controller-->
         <scene sceneID="adQ-lJ-heo">
             <objects>
-                <viewController id="KVS-Fx-GiB" customClass="DetailViewController" customModule="MatrixAlgebra" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KVS-Fx-GiB" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1kG-Rv-zwi"/>
                         <viewControllerLayoutGuide type="bottom" id="Zjs-QJ-hOc"/>
@@ -73,9 +73,6 @@
                             <accessibilityTraits key="traits" button="YES"/>
                         </accessibility>
                     </view>
-                    <connections>
-                        <outlet property="plusOperation" destination="hBq-Sb-i4q" id="4WS-Lw-QhR"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ye5-EG-LUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

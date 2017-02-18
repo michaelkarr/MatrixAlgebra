@@ -1,4 +1,4 @@
-//
+/*//
 //  MasterViewController.swift
 //  MatrixAlgebra
 //
@@ -91,5 +91,5 @@ class MasterViewController: UITableViewController {
     }
 
 
-}
+}*/
 
