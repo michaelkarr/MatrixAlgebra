@@ -43,7 +43,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="-"/>
                                 <connections>
-                                    <action selector="minusButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="DYp-vl-DxH"/>
+                                    <action selector="minusButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="l4K-14-Pqr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-7O-dJ4">
@@ -52,6 +52,7 @@
                                 <state key="normal" title="x"/>
                                 <connections>
                                     <action selector="Multiply:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="7J6-Qa-pNQ"/>
+                                    <action selector="multiplyButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="GC4-D4-CPE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xer-kp-iWj">
@@ -60,6 +61,7 @@
                                 <state key="normal" title="Inverse"/>
                                 <connections>
                                     <action selector="Inverse:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="HFI-NG-his"/>
+                                    <action selector="inverseButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="iJp-am-hS5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-Dp-FiJ">
@@ -67,7 +69,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Transpose"/>
                                 <connections>
-                                    <action selector="transposeButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="lBB-W6-cuP"/>
+                                    <action selector="transposeButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="FP3-2c-fz7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQm-Ga-Kcq">
@@ -75,7 +77,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cofactor"/>
                                 <connections>
-                                    <action selector="cofactorButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="qQS-a5-Dk2"/>
+                                    <action selector="cofactorButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="JcG-Mm-52q"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuU-np-CAs">
@@ -83,7 +85,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Determinant"/>
                                 <connections>
-                                    <action selector="determinantButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="Mhe-Xq-4tL"/>
+                                    <action selector="determinantButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="9Rc-8H-w5a"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7Q-9R-YtS">
@@ -91,12 +93,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Clear Screen"/>
+                                <connections>
+                                    <action selector="clearScreenButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="isq-yd-LtP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4O-63-EuM">
                                 <rect key="frame" x="284" y="6" width="99" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Clear Table"/>
+                                <connections>
+                                    <action selector="clearTableButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="wEh-TC-ioo"/>
+                                </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWk-Qx-a9C">
                                 <rect key="frame" x="20" y="48" width="111" height="307"/>
@@ -111,7 +119,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o1y-hJ-hlc" id="kiK-A3-GdS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -119,7 +127,7 @@
                                                 <rect key="frame" x="0.0" y="72" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QTQ-oy-KsX" id="FL9-Yz-PIK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -127,7 +135,7 @@
                                                 <rect key="frame" x="0.0" y="116" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w4q-WW-YnK" id="dsj-Je-eUu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -135,7 +143,7 @@
                                                 <rect key="frame" x="0.0" y="160" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Nt-Dg-snW" id="7Au-nM-1as">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -143,7 +151,7 @@
                                                 <rect key="frame" x="0.0" y="204" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kmK-Jd-pVF" id="Pzy-nF-WBp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -151,7 +159,7 @@
                                                 <rect key="frame" x="0.0" y="248" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9kS-nx-2AM" id="ooR-F4-nN5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -159,7 +167,7 @@
                                                 <rect key="frame" x="0.0" y="292" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="geq-yN-LuA" id="wBP-fC-haM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -167,7 +175,7 @@
                                                 <rect key="frame" x="0.0" y="336" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="38a-dI-f6T" id="oXm-Wx-QJy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -175,7 +183,7 @@
                                                 <rect key="frame" x="0.0" y="380" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fcI-e8-tLe" id="tDi-Zc-mYx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -183,7 +191,7 @@
                                                 <rect key="frame" x="0.0" y="424" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TgP-xI-QUu" id="hx0-qI-J1l">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -191,7 +199,7 @@
                                                 <rect key="frame" x="0.0" y="468" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o5K-Z9-YeV" id="Klo-Xn-lC5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -199,7 +207,7 @@
                                                 <rect key="frame" x="0.0" y="512" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ase-7D-sZm" id="T7D-bX-Za3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -207,7 +215,7 @@
                                                 <rect key="frame" x="0.0" y="556" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zw9-aN-Wq0" id="U1l-nA-2OJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -215,7 +223,7 @@
                                                 <rect key="frame" x="0.0" y="600" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0D5-iS-fLs" id="yyW-Cr-wbe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -223,7 +231,7 @@
                                                 <rect key="frame" x="0.0" y="644" width="125" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q4r-Uf-v68" id="7RH-pA-Wdk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>

@@ -11,14 +11,15 @@ import UIKit
 
 struct MatrixButton {
     var name: String
-    var butToMatrix: Matrix
+    var matrix: Matrix
     var row: Int
     var col: Int
     
-    init(name: String, butToMatrix: Matrix, row: Int, col: Int) {
+    init(name: String, matrixParam: Matrix) {
         self.name = name
-        self.butToMatrix = butToMatrix
-        self.row = row
-        self.col = col
+        matrix = matrixParam
+        let size = matrix.getSize()
+        row = size.row
+        col = size.col
     }
 }
