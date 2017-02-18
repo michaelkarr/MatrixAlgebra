@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let matrix1 = matrix(row: 5, col: 2)
+        let matrix1 = Matrix(row: 5, col: 2)
         
         print("Row: \(matrix1.row) Col: \(matrix1.col)")
 
