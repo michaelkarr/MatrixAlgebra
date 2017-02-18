@@ -18,7 +18,7 @@ class matrix {
         self.row = row
         self.col = col
         for _ in 0..<col {
-            arr.append(Array(repeating:Int(), count:row - 1))
+            arr.append(Array(repeating:Int(), count:row))
         }
         print("array \(arr)")
     }
