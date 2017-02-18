@@ -9,7 +9,7 @@
 
 import Foundation
 
-class matrix {
+class Matrix {
     var row: Int = 0
     var col: Int = 0
     var arr = Array<Array<Int>>()
@@ -24,6 +24,10 @@ class matrix {
     }
     
     //use guard for correcting inputs
+    
+    func getSize() -> (row: Int, col: Int) {
+        return (row, col)
+    }
     
     func setSpot(rowSpot: Int, colSpot: Int, val: Int) -> String {
         
