@@ -21,7 +21,6 @@ class Matrix {
         for _ in 0..<row {
             arr.append(Array(repeating:Float(), count:col))
         }
-        print("array \(arr)")
     }
     
     //use guard for correcting inputs

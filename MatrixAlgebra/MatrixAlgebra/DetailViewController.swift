@@ -22,8 +22,68 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var matrixVector = [Matrix]()
     var matrixSelected1 : Int = -1
+    var matrixSelected2 : Int = -1
+    var operatorString : String = ""
     var savedMatrix = Matrix(row: 1, col: 1)
     
+    
+    @IBOutlet weak var saveObj: UIButton!
+    
+    @IBAction func plusButton(_ sender: Any) {
+        if matrixSelected1 == -1 || matrixVector.count < 2 {
+            return
+        }
+        operatorString = "Add"
+    }
+    func calculateAdd () {
+        savedMatrix = sum(a: matrixVector[matrixSelected1], b: matrixVector[matrixSelected2])
+        print(savedMatrix.description)
+        setOutput(mat : savedMatrix)
+        operatorString = ""
+    }
+    @IBAction func minusBUtton(_ sender: Any) {
+        if matrixSelected1 == -1 || matrixVector.count < 2 {
+            return
+        }
+        operatorString = "Subtract"
+    }
+    func calculateSubtract () {
+        savedMatrix = sub(a: matrixVector[matrixSelected1], b: matrixVector[matrixSelected2])
+        setOutput(mat : savedMatrix)
+        operatorString = ""
+    }
+    @IBAction func multiplyButton(_ sender: Any) {
+        if matrixSelected1 == -1 || matrixVector.count < 2 {
+            return
+        }
+        operatorString = "Multiply"
+    }
+    func calculateMultiply () {
+        savedMatrix = mult(a: matrixVector[matrixSelected1], b: matrixVector[matrixSelected2])
+        setOutput(mat : savedMatrix)
+        operatorString = ""
+    }
+    
+    
+    
+    @IBAction func inverseButton(_ sender: Any) {
+        if matrixSelected1 == -1 {
+            return
+        }
+        let tempMat : Matrix = matrixVector[matrixSelected1]
+        savedMatrix = inverse(a: tempMat)
+        
+        setOutput(mat: savedMatrix)
+    }
+    @IBAction func transposeButton(_ sender: Any) {
+        if matrixSelected1 == -1 {
+            return
+        }
+        let tempMat : Matrix = matrixVector[matrixSelected1]
+        savedMatrix = transpose(a: tempMat)
+        
+        setOutput(mat: savedMatrix)
+    }
     @IBAction func determinantButton(_ sender: Any) {
         if matrixSelected1 == -1 {
             return
@@ -35,36 +95,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         setOutput(mat: savedMatrix)
     }
-    @IBAction func cofactorButton(_ sender: Any) {
-    }
-    @IBAction func transposeButton(_ sender: Any) {
-        if matrixSelected1 == -1 {
+
+    
+
+    @IBAction func saveAction(_ sender: Any) {
+        if savedMatrix.getSpot(rowSpot: 0, colSpot: 0) == Float.leastNormalMagnitude {
             return
+        } else {
+            matrixVector.append(savedMatrix)
         }
-        let tempMat : Matrix = matrixVector[matrixSelected1]
-        savedMatrix = transpose(a: tempMat)
-        
-        setOutput(mat: savedMatrix)
+        saveObj.isHidden = true
     }
-    @IBAction func inverseButton(_ sender: Any) {
-        if matrixSelected1 == -1 {
-            return
-        }
-        let tempMat : Matrix = matrixVector[matrixSelected1]
-        savedMatrix = inverse(a: tempMat)
-        
-        setOutput(mat: savedMatrix)
-    }
-    @IBAction func multiplyButton(_ sender: Any) {
-    }
-    @IBAction func minusBUtton(_ sender: Any) {
-    }
-    @IBAction func plusButton(_ sender: Any) {
-        let matrixTemp = Matrix(row: 1, col: 1)
-        matrixTemp.name = "name"
-        self.matrixVector.append(matrixTemp)
-        self.tableView.reloadData()
-    }
+    
+    
+
+    
+    
     @IBAction func RemoveSelected(_ sender: Any) {
         if self.matrixSelected1 != -1 {
             self.matrixVector.remove(at: self.matrixSelected1)
@@ -76,6 +122,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         clearOutput()
     }
     @IBAction func clearScreen(_ sender: Any) {
+        clearOutput()
+        clearInput()
     }
     @IBAction func clearTable(_ sender: Any) {
         matrixVector.removeAll()
@@ -170,6 +218,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        saveObj.isHidden = true
+        saveObj.addTarget(self, action: "saveAction:", for: UIControlEvents.touchUpInside)
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "matrixCell")
     }
     
@@ -194,8 +245,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(operatorString)
         
-        clearOutput()
+        switch operatorString {
+        case "Add":
+            matrixSelected2 = indexPath.row
+            calculateAdd()
+        case "Subtract":
+            matrixSelected2 = indexPath.row
+            calculateSubtract()
+        case "Multiply":
+            matrixSelected2 = indexPath.row
+            calculateMultiply()
+        default:
+            matrixSelected1 = indexPath.row
+            clearOutput()
+        }
+        
         matrixSelected1 = indexPath.row
         setInput(mat: matrixVector[matrixSelected1])
     }
@@ -246,14 +312,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             outputLabels[i].text = mat.getCol(j: i)
             self.view.addSubview(outputLabels[i])
         }
+        saveObj.isHidden = false
     }
     
     func clearOutput() {
+        
         let val = outputLabels.count
         for _ in 0..<val {
             outputLabels[0].frame = CGRect(x: 550, y: 150, width: 0, height: 0)
             outputLabels.remove(at: 0)
         }
+        saveObj.isHidden = true
     }
 }
 
