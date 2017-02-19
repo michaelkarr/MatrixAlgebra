@@ -10,15 +10,16 @@
 import Foundation
 
 class Matrix {
+    var name: String = ""
     var row: Int = 0
     var col: Int = 0
-    var arr = Array<Array<Int>>()
+    var arr = Array<Array<Float>>()
     
     init (row: Int, col: Int) {
         self.row = row
         self.col = col
         for _ in 0..<col {
-            arr.append(Array(repeating:Int(), count:row))
+            arr.append(Array(repeating:Float(), count:row))
         }
         print("array \(arr)")
     }
@@ -29,22 +30,22 @@ class Matrix {
         return (row, col)
     }
     
-    func setSpot(rowSpot: Int, colSpot: Int, val: Int) -> String {
+    func setSpot(rowSpot: Int, colSpot: Int, val: Float) {
         
-        if (inBounds(rowSpot: rowSpot, colSpot: colSpot)) {
-            arr[rowSpot][colSpot] = val
-            return ""
-        } else {
-            return "Index not in bounds"
+        guard inBounds(rowSpot: rowSpot, colSpot: colSpot) else {
+            return
         }
+
+        arr[rowSpot][colSpot] = val
+
     }
     
-    func getSpot(rowSpot: Int, colSpot: Int) -> Int {
-        if (inBounds(rowSpot: rowSpot, colSpot: colSpot)) {
-            return arr[rowSpot][colSpot]
-        } else {
-            return 0
+    func getSpot(rowSpot: Int, colSpot: Int) -> Float {
+        guard inBounds(rowSpot: rowSpot, colSpot: colSpot) else {
+            return Float.leastNormalMagnitude
         }
+        
+        return arr[rowSpot][colSpot]
     }
     
     func inBounds(rowSpot: Int, colSpot: Int) -> Bool {
