@@ -47,8 +47,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func cofactorButton(_ sender: Any) {
     }
     @IBAction func transposeButton(_ sender: Any) {
+        if matrixSelected1 == -1 {
+            return
+        }
+        let tempMat : Matrix = matrixVector[matrixSelected1]
+        savedMatrix = transpose(a: tempMat)
+        
+        outputLabel.frame = CGRect(x: 550, y: 150, width: 100, height: 100)
+        
+        outputLabel.layer.borderColor = UIColor.red.cgColor;
+        outputLabel.layer.borderWidth = 3.0;
+        outputLabel.textAlignment = .center
+        
+        outputLabel.numberOfLines = savedMatrix.row + 1;
+        
+        outputLabel.text = savedMatrix.description
+        self.view.addSubview(outputLabel)
     }
     @IBAction func inverseButton(_ sender: Any) {
+        if matrixSelected1 == -1 {
+            return
+        }
+        let tempMat : Matrix = matrixVector[matrixSelected1]
+        savedMatrix = inverse(a: tempMat)
+        
+        outputLabel.frame = CGRect(x: 550, y: 150, width: 100, height: 100)
+        
+        outputLabel.layer.borderColor = UIColor.red.cgColor;
+        outputLabel.layer.borderWidth = 3.0;
+        outputLabel.textAlignment = .center
+        
+        outputLabel.numberOfLines = savedMatrix.row + 1;
+        
+        outputLabel.text = savedMatrix.description
+        self.view.addSubview(outputLabel)
     }
     @IBAction func multiplyButton(_ sender: Any) {
     }
@@ -114,6 +146,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.tableView.reloadData()
             self.setMatrix(matrixToSet : matrixAux, index1: 0)
         }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in}))
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
@@ -188,6 +222,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         matrixSelected1 = indexPath.row
+        outputLabel.frame = CGRect(x: 250, y: 150, width: 0, height: 0)
         
         let r : Int = matrixVector[indexPath.row].row + 1
         let c : Int = matrixVector[indexPath.row].col + 1
