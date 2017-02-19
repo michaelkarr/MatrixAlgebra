@@ -113,25 +113,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
             //3. Popping up and getting values
-            alert.addAction(UIAlertAction(title: "Set Value", style: .default, handler: { [weak alert] (_) in
+        alert.addAction(UIAlertAction(title: "Set Value", style: .default, handler: { [weak alert] (_) in
                 
-                let elementRowString = alert?.textFields![0]
+            for i in 0..<matrixToSet.row {
+                let elementRowString = alert?.textFields![i]
                 let elementRow = Float((elementRowString?.text)!)
                 
-                for i in 0..<matrixToSet.row {
-                    matrixToSet.setSpot(rowSpot: i, colSpot: index1, val: elementRow!)
-                }
-                
-                if index1 != matrixToSet.row-1 {
-                    print("Here")
-                    self.setMatrix(matrixToSet : matrixToSet, index1: index1 + 1)
-                }
+                matrixToSet.setSpot(rowSpot: i, colSpot: index1, val: elementRow!)
+            }
             
-            }))
+            if index1 != matrixToSet.col-1 {
+                self.setMatrix(matrixToSet : matrixToSet, index1: index1 + 1)
+            }
+            
+        }))
         
             
-            // 4. Present the alert.
-            self.present(alert, animated: true, completion: nil)
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
         
     }
  
@@ -170,7 +169,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         inputLabel1.layer.borderWidth = 3.0;
         
         inputLabel1.numberOfLines = matrixVector[indexPath.row].row + 1;
-        print(matrixVector[indexPath.row].row + 1)
         
         inputLabel1.textAlignment = .center
         inputLabel1.text = matrixVector[indexPath.row].description

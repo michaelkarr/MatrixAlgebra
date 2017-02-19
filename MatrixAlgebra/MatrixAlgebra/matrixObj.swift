@@ -62,7 +62,9 @@ class Matrix {
             for j in 0..<self.col {
                 toReturn += String(self.arr[i][j]) + "\t"
             }
-            toReturn += "\n"
+            if i != self.row-1 {
+                toReturn += "\n"
+            }
         }
         return toReturn
     }
