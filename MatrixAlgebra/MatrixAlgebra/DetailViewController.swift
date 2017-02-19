@@ -18,13 +18,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet
     var tableView: UITableView!
-
-    // Testing
-    var matrixData = [
-        MatrixButton(name: "Matrix A", matrixParam: Matrix(row: 2, col: 2)),
-        MatrixButton(name: "Matrix B", matrixParam: Matrix(row: 2, col: 3)),
-        MatrixButton(name: "Matrix C", matrixParam: Matrix(row: 3, col: 3))
-    ]
     
     var matrixVector = [Matrix]()
     
@@ -41,12 +34,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @IBAction func minusBUtton(_ sender: Any) {
     }
+    @IBAction func removeLastButton(_ sender: Any) {
+        if self.matrixVector.count > 0 {
+            self.matrixVector.remove(at: 0)
+            self.tableView.reloadData()
+        }
+    }
     @IBAction func plusButton(_ sender: Any) {
+        let matrixTemp = Matrix(row: 1, col: 1)
+        matrixTemp.name = "name"
+        self.matrixVector.append(matrixTemp)
+        self.tableView.reloadData()
     }
     @IBAction func clearScreen(_ sender: Any) {
+        self.tableView.reloadData()
     }
     @IBAction func clearTable(_ sender: Any) {
-        print("Clear Table")
+        while matrixVector.count > 0 {
+            self.matrixVector.remove(at: 0)
+            self.tableView.reloadData()
+        }
     }
     @IBAction func createMatrixButton(_ sender: Any) {
         //1. Create the alert controller.
@@ -76,8 +83,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let columns = Int((columnsString?.text)!)
             
             let matrixAux = Matrix(row: rows!, col: columns!)
-            self.matrixVector.append(matrixAux)
+            matrixAux.name = (name?.text!)!
             
+            self.matrixVector.append(matrixAux)
+            self.tableView.reloadData()
         }))
         
         // 4. Present the alert.
@@ -104,16 +113,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.matrixData.count;
+        return self.matrixVector.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "matrixCell")! as UITableViewCell
-        let tempButton: MatrixButton = self.matrixData[indexPath.row]
-        let str1 = String(tempButton.row)
-        let str2 = String(tempButton.col)
+        let temp: Matrix = self.matrixVector[indexPath.row]
+        let str1 = String(temp.row)
+        let str2 = String(temp.col)
         
-        cell.textLabel?.text = tempButton.name
+        cell.textLabel?.text = temp.name
         cell.detailTextLabel?.text = (str1 + " x " + str2)
         
         print(str1 + " x " + str2)
@@ -121,7 +130,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected matrix \(matrixData[indexPath.row].name)!")
+        print("You selected matrix \(matrixVector[indexPath.row].name)!")
     }
 }
 

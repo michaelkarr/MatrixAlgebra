@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B1834EA51E58DDE700895B4E /* MatrixButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1834EA41E58DDE700895B4E /* MatrixButton.swift */; };
 		E27F233E1E58512700140FFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F233D1E58512700140FFE /* AppDelegate.swift */; };
 		E27F23421E58512700140FFE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F23411E58512700140FFE /* DetailViewController.swift */; };
 		E27F23451E58512700140FFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27F23431E58512700140FFE /* Main.storyboard */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B1834EA41E58DDE700895B4E /* MatrixButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixButton.swift; sourceTree = "<group>"; };
 		E27F233A1E58512700140FFE /* MatrixAlgebra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatrixAlgebra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27F233D1E58512700140FFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E27F23411E58512700140FFE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 				E27F23411E58512700140FFE /* DetailViewController.swift */,
 				E27F23511E5853A100140FFE /* matrixObj.swift */,
 				E2FE61961E58F71800334F22 /* operators.swift */,
-				B1834EA41E58DDE700895B4E /* MatrixButton.swift */,
 				E27F23431E58512700140FFE /* Main.storyboard */,
 				E27F23461E58512700140FFE /* Assets.xcassets */,
 				E27F23481E58512700140FFE /* LaunchScreen.storyboard */,
@@ -147,7 +144,6 @@
 			files = (
 				E27F23421E58512700140FFE /* DetailViewController.swift in Sources */,
 				E27F23521E5853A100140FFE /* matrixObj.swift in Sources */,
-				B1834EA51E58DDE700895B4E /* MatrixButton.swift in Sources */,
 				E27F233E1E58512700140FFE /* AppDelegate.swift in Sources */,
 				E2FE61971E58F71800334F22 /* operators.swift in Sources */,
 			);
