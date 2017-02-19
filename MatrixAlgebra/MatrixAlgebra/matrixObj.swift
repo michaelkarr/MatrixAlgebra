@@ -56,6 +56,17 @@ class Matrix {
         }
     }
     
+    func getCol(j : Int) -> String {
+        var s : String = ""
+        for i in 0..<row {
+            s += String(getSpot(rowSpot: i, colSpot: j))
+            if i != row-1 {
+                s += "\n"
+            }
+        }
+        return s
+    }
+    
     public var description: String {
         var toReturn: String = ""
         for i in 0..<self.row {

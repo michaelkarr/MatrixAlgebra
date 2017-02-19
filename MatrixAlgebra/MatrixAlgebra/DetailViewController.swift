@@ -17,8 +17,8 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
-    var inputLabel1 = UILabel(frame: CGRect(x: 250, y: 150, width: 0, height: 0))
-    var outputLabel = UILabel(frame: CGRect(x: 550, y: 150, width: 0, height: 0))
+    var inputLabels  = [UILabel]()
+    var outputLabels = [UILabel]()
     
     var matrixVector = [Matrix]()
     var matrixSelected1 : Int = -1
@@ -33,16 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         savedMatrix = Matrix(row: 1, col: 1)
         savedMatrix.setSpot(rowSpot: 0, colSpot: 0, val: tempFloat)
         
-        outputLabel.frame = CGRect(x: 550, y: 150, width: 100, height: 100)
-        
-        outputLabel.layer.borderColor = UIColor.red.cgColor;
-        outputLabel.layer.borderWidth = 3.0;
-        outputLabel.textAlignment = .center
-        
-        outputLabel.numberOfLines = savedMatrix.row + 1;
-        
-        outputLabel.text = savedMatrix.description
-        self.view.addSubview(outputLabel)
+        setOutput(mat: savedMatrix)
     }
     @IBAction func cofactorButton(_ sender: Any) {
     }
@@ -53,16 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tempMat : Matrix = matrixVector[matrixSelected1]
         savedMatrix = transpose(a: tempMat)
         
-        outputLabel.frame = CGRect(x: 550, y: 150, width: 100, height: 100)
-        
-        outputLabel.layer.borderColor = UIColor.red.cgColor;
-        outputLabel.layer.borderWidth = 3.0;
-        outputLabel.textAlignment = .center
-        
-        outputLabel.numberOfLines = savedMatrix.row + 1;
-        
-        outputLabel.text = savedMatrix.description
-        self.view.addSubview(outputLabel)
+        setOutput(mat: savedMatrix)
     }
     @IBAction func inverseButton(_ sender: Any) {
         if matrixSelected1 == -1 {
@@ -71,16 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tempMat : Matrix = matrixVector[matrixSelected1]
         savedMatrix = inverse(a: tempMat)
         
-        outputLabel.frame = CGRect(x: 550, y: 150, width: 100, height: 100)
-        
-        outputLabel.layer.borderColor = UIColor.red.cgColor;
-        outputLabel.layer.borderWidth = 3.0;
-        outputLabel.textAlignment = .center
-        
-        outputLabel.numberOfLines = savedMatrix.row + 1;
-        
-        outputLabel.text = savedMatrix.description
-        self.view.addSubview(outputLabel)
+        setOutput(mat: savedMatrix)
     }
     @IBAction func multiplyButton(_ sender: Any) {
     }
@@ -98,8 +71,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.matrixSelected1 = -1
             self.tableView.reloadData()
         }
-        inputLabel1.frame = CGRect(x: 250, y: 150, width: 0, height: 0)
-        outputLabel.frame = CGRect(x: 250, y: 150, width: 0, height: 0)
+        
+        clearInput()
+        clearOutput()
     }
     @IBAction func clearScreen(_ sender: Any) {
     }
@@ -222,21 +196,60 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         matrixSelected1 = indexPath.row
-        outputLabel.frame = CGRect(x: 250, y: 150, width: 0, height: 0)
+        clearInput()
+        setInput(mat: matrixVector[matrixSelected1])
+    }
+    
+    func setInput(mat : Matrix) {
+        let r : Int = mat.row + 1
+        let c : Int = mat.col
         
-        let r : Int = matrixVector[indexPath.row].row + 1
-        let c : Int = matrixVector[indexPath.row].col + 1
+        for i in 0..<c {
+            inputLabels.append(UILabel(frame: CGRect(x: 250-25*c+50*i, y: 150-10*r, width: 50, height: 20*r)))
+            
+            inputLabels[i].layer.borderColor = UIColor.blue.cgColor;
+            inputLabels[i].layer.borderWidth = 1.0;
+            inputLabels[i].textAlignment = .center
+            
+            inputLabels[i].numberOfLines = r;
+            
+            inputLabels[i].text = mat.getCol(j: i)
+            self.view.addSubview(inputLabels[i])
+        }
+    }
+    
+    func clearInput() {
+        let val = inputLabels.count
+        for _ in 0..<val {
+            inputLabels[0].frame = CGRect(x: 250, y: 150, width: 0, height: 0)
+            inputLabels.remove(at: 0)
+        }
+    }
+    
+    func setOutput(mat : Matrix) {
+        let r : Int = mat.row + 1
+        let c : Int = mat.col
         
-        inputLabel1.frame = CGRect(x: 250-15*c, y: 150-10*r, width: 30*c, height: 20*r)
-        
-        inputLabel1.layer.borderColor = UIColor.blue.cgColor;
-        inputLabel1.layer.borderWidth = 3.0;
-        inputLabel1.textAlignment = .center
-
-        inputLabel1.numberOfLines = matrixVector[indexPath.row].row + 1;
-        
-        inputLabel1.text = matrixVector[indexPath.row].description
-        self.view.addSubview(inputLabel1)
+        for i in 0..<c {
+            outputLabels.append(UILabel(frame: CGRect(x: 550-25*c+50*i, y: 150-10*r, width: 50, height: 20*r)))
+            
+            outputLabels[i].layer.borderColor = UIColor.red.cgColor;
+            outputLabels[i].layer.borderWidth = 1.0;
+            outputLabels[i].textAlignment = .center
+            
+            outputLabels[i].numberOfLines = r;
+            
+            outputLabels[i].text = mat.getCol(j: i)
+            self.view.addSubview(outputLabels[i])
+        }
+    }
+    
+    func clearOutput() {
+        let val = outputLabels.count
+        for _ in 0..<val {
+            outputLabels[0].frame = CGRect(x: 550, y: 150, width: 0, height: 0)
+            outputLabels.remove(at: 0)
+        }
     }
 }
 
