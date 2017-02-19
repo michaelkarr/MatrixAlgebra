@@ -17,14 +17,13 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
-    let inputLabel1 = UILabel(frame: CGRect(x: 160, y: 100, width: 160, height: 160))
-    let inputLabel2 = UILabel(frame: CGRect(x: 400, y: 175, width: 160, height: 160))
+    let inputLabel1 = UILabel(frame: CGRect(x: 250, y: 150, width: 0, height: 0))
+    let outputLabel = UILabel(frame: CGRect(x: 550, y: 150, width: 0, height: 0))
     
     var matrixVector = [Matrix]()
+    var matrixSelected1 : Int = -1
     
     @IBAction func determinantButton(_ sender: Any) {
-        print(matrixVector.count)
-        print("\(matrixVector[matrixVector.count-1].description)")
     }
     @IBAction func cofactorButton(_ sender: Any) {
     }
@@ -36,17 +35,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @IBAction func minusBUtton(_ sender: Any) {
     }
-    @IBAction func removeLastButton(_ sender: Any) {
-        if self.matrixVector.count > 0 {
-            self.matrixVector.remove(at: matrixVector.count - 1)
-            self.tableView.reloadData()
-        }
-    }
     @IBAction func plusButton(_ sender: Any) {
         let matrixTemp = Matrix(row: 1, col: 1)
         matrixTemp.name = "name"
         self.matrixVector.append(matrixTemp)
         self.tableView.reloadData()
+    }
+    
+    
+    @IBAction func removeSelectedButton(_ sender: Any) {
+        if self.matrixSelected1 != -1 {
+            self.matrixVector.remove(at: self.matrixSelected1)
+            self.matrixSelected1 = -1
+            self.tableView.reloadData()
+        }
+        inputLabel1.frame = CGRect(x: 250, y: 150, width: 0, height: 0)
     }
     @IBAction func clearScreen(_ sender: Any) {
     }
@@ -119,7 +122,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let elementRowString = alert?.textFields![i]
                 let elementRow = Float((elementRowString?.text)!)
                 
-                matrixToSet.setSpot(rowSpot: i, colSpot: index1, val: elementRow!)
+                if let x = elementRow {
+                    matrixToSet.setSpot(rowSpot: i, colSpot: index1, val: x)
+                }
             }
             
             if index1 != matrixToSet.col-1 {
@@ -163,7 +168,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected matrix \(matrixVector[indexPath.row].name)!")
+        
+        matrixSelected1 = indexPath.row
+        
+        let r : Int = matrixVector[indexPath.row].row + 1
+        let c : Int = matrixVector[indexPath.row].col + 1
+        
+        inputLabel1.frame = CGRect(x: 250-15*c, y: 150-10*r, width: 30*c, height: 20*r)
         
         inputLabel1.layer.borderColor = UIColor.blue.cgColor;
         inputLabel1.layer.borderWidth = 3.0;
