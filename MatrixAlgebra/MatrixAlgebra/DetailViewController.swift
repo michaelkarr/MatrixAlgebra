@@ -195,17 +195,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        clearOutput()
         matrixSelected1 = indexPath.row
-        clearInput()
         setInput(mat: matrixVector[matrixSelected1])
     }
     
     func setInput(mat : Matrix) {
+        clearInput()
+        
         let r : Int = mat.row + 1
         let c : Int = mat.col
         
         for i in 0..<c {
-            inputLabels.append(UILabel(frame: CGRect(x: 250-25*c+50*i, y: 150-10*r, width: 50, height: 20*r)))
+            inputLabels.append(UILabel(frame: CGRect(x: 300-35*c+70*i, y: 150-10*r, width: 70, height: 20*r)))
             
             inputLabels[i].layer.borderColor = UIColor.blue.cgColor;
             inputLabels[i].layer.borderWidth = 1.0;
@@ -227,11 +229,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func setOutput(mat : Matrix) {
+        clearOutput()
+        
         let r : Int = mat.row + 1
         let c : Int = mat.col
         
         for i in 0..<c {
-            outputLabels.append(UILabel(frame: CGRect(x: 550-25*c+50*i, y: 150-10*r, width: 50, height: 20*r)))
+            outputLabels.append(UILabel(frame: CGRect(x: 550-35*c+70*i, y: 150-10*r, width: 70, height: 20*r)))
             
             outputLabels[i].layer.borderColor = UIColor.red.cgColor;
             outputLabels[i].layer.borderWidth = 1.0;

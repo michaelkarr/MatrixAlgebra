@@ -36,8 +36,11 @@ class Matrix {
             return
         }
 
-        arr[rowSpot][colSpot] = val
-
+        if (val == -0) {
+            arr[rowSpot][colSpot] = 0
+        } else {
+            arr[rowSpot][colSpot] = val
+        }
     }
     
     func getSpot(rowSpot: Int, colSpot: Int) -> Float {
@@ -59,7 +62,7 @@ class Matrix {
     func getCol(j : Int) -> String {
         var s : String = ""
         for i in 0..<row {
-            s += String(getSpot(rowSpot: i, colSpot: j))
+            s += String(format: "%.3f", getSpot(rowSpot: i, colSpot: j))
             if i != row-1 {
                 s += "\n"
             }
