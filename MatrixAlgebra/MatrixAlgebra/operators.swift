@@ -18,9 +18,7 @@ func sum(a: Matrix, b: Matrix) -> Matrix {
         }
         return matrixC
     } else {
-        let matrixC = Matrix(row: 1, col: 1)
-        matrixC.setSpot(rowSpot: 0, colSpot: 0, val: Float.leastNormalMagnitude)
-        return matrixC
+        return errorReturn()
     }
 }
 
@@ -34,9 +32,7 @@ func sub(a: Matrix, b: Matrix) -> Matrix {
         }
         return matrixC
     } else {
-        let matrixC = Matrix(row: 1, col: 1)
-        matrixC.setSpot(rowSpot: 0, colSpot: 0, val: Float.leastNormalMagnitude)
-        return matrixC
+        return errorReturn()
     }
 }
 
@@ -54,9 +50,7 @@ func mult(a: Matrix, b: Matrix) -> Matrix {
         }
         return matrixC
     } else {
-        let matrixC = Matrix(row: 1, col: 1)
-        matrixC.setSpot(rowSpot: 0, colSpot: 0, val: Float.leastNormalMagnitude)
-        return matrixC
+        return errorReturn()
     }
 }
 
@@ -107,6 +101,25 @@ func det(a: Matrix) -> Float {
     return returnDet
 }
 
+func inverse(a: Matrix) -> Matrix {
+    if (!validateSquare(a: a)) {
+        return errorReturn()
+    }
+    
+    let aDet: Float = det(a: a)
+    if (aDet == 0) {
+        
+    }
+    
+    let aInverse: Matrix = Matrix(row: a.row, col: a.col)
+    for i in 0..<a.row {
+        for j in 0..<a.col {
+            aInverse.setSpot(rowSpot: i, colSpot: j, val: cofactor(a: a, i: i, j: j)/aDet)
+        }
+    }
+    return transpose(a: aInverse)
+}
+
 /*func delCol(array: Array<Array<Float>>, arrCol: Int) -> Array<Array<Float>> {
     for i in 0..<array.capacity {
         array[i].remove(at: arrCol)
@@ -130,4 +143,10 @@ func validate2DimMult(a: Matrix, b: Matrix) -> Bool {
 
 func validateSquare(a: Matrix) -> Bool {
     return a.row == a.col ? true : false
+}
+
+func errorReturn() -> Matrix {
+    let matrixC = Matrix(row: 1, col: 1)
+    matrixC.setSpot(rowSpot: 0, colSpot: 0, val: Float.leastNormalMagnitude)
+    return matrixC
 }
