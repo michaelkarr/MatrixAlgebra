@@ -49,21 +49,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func clearScreen(_ sender: Any) {
     }
     @IBAction func clearTable(_ sender: Any) {
-        while matrixVector.count > 0 {
-            self.matrixVector.remove(at: 0)
-            self.tableView.reloadData()
-        }
+        matrixVector.removeAll()
+        self.tableView.reloadData()
     }
     @IBAction func createMatrixButton(_ sender: Any) {
         
-        //1. Create the alert controller.
-        let alert = UIAlertController(title: "New Matrix", message: "", preferredStyle: .alert)
+         //1. Create the alert controller.
+         let alert = UIAlertController(title: "New Matrix", message: "", preferredStyle: .alert)
         
-        //2. Add the text fields. Name, Rows and Columns.
+         //2. Add the text fields. Name, Rows and Columns.
          alert.addTextField { (Name) in
          Name.keyboardType = UIKeyboardType.asciiCapable
          Name.placeholder = "Name"
-         
          }
          
          alert.addTextField { (Rows) in
