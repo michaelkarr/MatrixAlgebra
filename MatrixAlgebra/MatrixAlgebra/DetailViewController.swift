@@ -89,63 +89,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.matrixVector.append(matrixAux)
             self.tableView.reloadData()
-            self.setMatrix(matrixToSet : matrixAux)
+            self.setMatrix(matrixToSet : matrixAux, index1: 0, index2: 0)
         }))
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
     }
     
-    func setMatrix(matrixToSet : Matrix) {
+    func setMatrix(matrixToSet : Matrix, index1: Int, index2: Int) {
         
         //1. Create the alert controller.
         let alert = UIAlertController(title: "Lets", message: "", preferredStyle: .alert)
         
-        //2. Add the text fields. Name, Rows and Columns.
-        for index1 in 0..<matrixToSet.row {
-            for index2 in 0..<matrixToSet.col  {
-                matrixToSet.setSpot(rowSpot: index1, colSpot: index2, val: 0)
-            }
+        //2. Open add text fields repeteadly in the pop-up. elem is got.
+        
+        alert.addTextField { (element) in
+            element.placeholder = "Row: \(index1 + 1) Col: \(index2 + 1)"
+            element.keyboardType = UIKeyboardType.asciiCapable
         }
         
-        
-        //        alert.addTextField { (Name) in
-        //            Name.placeholder = "Name"
-        //            Name.keyboardType = UIKeyboardType.asciiCapable
-        //
-        //        }
-        //
-        //        alert.addTextField { (Rows) in
-        //            Rows.placeholder = "Rows"
-        //            Rows.keyboardType = UIKeyboardType.asciiCapable
-        //        }
-        //
-        //        alert.addTextField { (Columns) in
-        //            Columns.placeholder = "Columns"
-        //            Columns.keyboardType = UIKeyboardType.asciiCapable
-        //        }
-        //
-        //        // 3. Grab the value from the text field, and print it when the user clicks OK.
-        //        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
-        //
-        //            let name = alert?.textFields![0]
-        //
-        //            let rowsString = alert?.textFields![1]
-        //            let rows = Int((rowsString?.text)!)
-        //
-        //            let columnsString = alert?.textFields![2]
-        //            let columns = Int((columnsString?.text)!)
-        //
-        //            let matrixAux = Matrix(row: rows!, col: columns!)
-        //            matrixAux.name = (name?.text!)!
-        //
-        //            self.matrixVector.append(matrixAux)
-        //            self.tableView.reloadData()
-        //        }))
+        //3. Popping up and getting values
+        alert.addAction(UIAlertAction(title: "Set Value", style: .default, handler: { [weak alert] (_) in
+            
+            let elementString = alert?.textFields![0]
+            let element = Float((elementString?.text)!)
+            
+            matrixToSet.setSpot(rowSpot: index1, colSpot: index2, val: element!)
+            
+            if index2 != matrixToSet.col-1 {
+                self.setMatrix(matrixToSet : matrixToSet, index1: index1, index2: index2 + 1)
+            } else if index1 != matrixToSet.row-1{
+                self.setMatrix(matrixToSet : matrixToSet, index1: index1 + 1, index2: 0)
+            }
+            
+        }))
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
-        
         
     }
  
