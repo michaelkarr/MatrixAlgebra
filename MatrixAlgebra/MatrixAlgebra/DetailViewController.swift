@@ -101,10 +101,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func saveAction(_ sender: Any) {
         if savedMatrix.getSpot(rowSpot: 0, colSpot: 0) == Float.leastNormalMagnitude {
             return
-        } else {
-            matrixVector.append(savedMatrix)
         }
         saveObj.isHidden = true
+        
+        
+        
+        //Popup
+        let alert = UIAlertController(title: "Matrix name: ", message: "", preferredStyle: .alert)
+        
+        
+        
+        alert.addTextField { (Name) in
+            Name.keyboardType = UIKeyboardType.asciiCapable
+            Name.placeholder = "Name"
+        }
+        
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
+            
+            let name = alert?.textFields![0]
+            
+            self.savedMatrix.name = (name?.text!)!
+            
+            self.matrixVector.append(self.savedMatrix)
+            
+            self.tableView.reloadData()
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in}))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+
+        
     }
     
     
