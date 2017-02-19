@@ -47,7 +47,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.reloadData()
     }
     @IBAction func clearScreen(_ sender: Any) {
-        self.tableView.reloadData()
     }
     @IBAction func clearTable(_ sender: Any) {
         while matrixVector.count > 0 {
