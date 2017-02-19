@@ -60,7 +60,7 @@ class Matrix {
         var toReturn: String = ""
         for i in 0..<self.row {
             for j in 0..<self.col {
-                toReturn += String(self.arr[i][j]) + " "
+                toReturn += String(self.arr[i][j]) + "\t"
             }
             toReturn += "\n"
         }

@@ -16,8 +16,9 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet
-    var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
+    let inputLabel1 = UILabel(frame: CGRect(x: 160, y: 100, width: 160, height: 160))
+    let inputLabel2 = UILabel(frame: CGRect(x: 400, y: 175, width: 160, height: 160))
     
     var matrixVector = [Matrix]()
     
@@ -142,11 +143,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
-    // Table functions
-    func addMatrix(toAdd: Matrix) {
-        
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.matrixVector.count;
     }
@@ -164,6 +160,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected matrix \(matrixVector[indexPath.row].name)!")
+        
+        inputLabel1.layer.borderColor = UIColor.blue.cgColor;
+        inputLabel1.layer.borderWidth = 3.0;
+        
+        inputLabel1.numberOfLines = matrixVector[indexPath.row].row + 1;
+        print(matrixVector[indexPath.row].row + 1)
+        
+        inputLabel1.textAlignment = .center
+        inputLabel1.text = matrixVector[indexPath.row].description
+        self.view.addSubview(inputLabel1)
     }
 }
 
