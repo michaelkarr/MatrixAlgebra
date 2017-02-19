@@ -108,7 +108,9 @@ func inverse(a: Matrix) -> Matrix {
     
     let aDet: Float = det(a: a)
     if (aDet == 0) {
-        
+        let matrixC = Matrix(row: 1, col: 1)
+        matrixC.setSpot(rowSpot: 0, colSpot: 0, val: Float.greatestFiniteMagnitude)
+        return matrixC
     }
     
     let aInverse: Matrix = Matrix(row: a.row, col: a.col)

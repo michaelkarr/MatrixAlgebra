@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var tableView: UITableView!
     var inputLabels  = [UILabel]()
     var outputLabels = [UILabel]()
+    var equationLabel = UILabel(frame : CGRect(x: 250, y: 275, width: 300, height: 30))
     
     var matrixVector = [Matrix]()
     var matrixSelected1 : Int = -1
@@ -37,9 +38,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func calculateAdd () {
         savedMatrix = sum(a: matrixVector[matrixSelected1], b: matrixVector[matrixSelected2])
-        print(savedMatrix.description)
-        setOutput(mat : savedMatrix)
         operatorString = ""
+
+        if(valid()) {
+            setOutput(mat: savedMatrix)
+            equationLabel.text = matrixVector[matrixSelected1].name + " + " + matrixVector[matrixSelected2].name
+        } else {
+            let alert = UIAlertController(title: "Error", message: "The matrices must have the same dimensions to add together.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true, completion:  nil)
+        }
     }
     @IBAction func minusBUtton(_ sender: Any) {
         if matrixSelected1 == -1 || matrixVector.count < 2 {
@@ -49,8 +57,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func calculateSubtract () {
         savedMatrix = sub(a: matrixVector[matrixSelected1], b: matrixVector[matrixSelected2])
-        setOutput(mat : savedMatrix)
         operatorString = ""
+
+        if(valid()) {
+            setOutput(mat: savedMatrix)
+            equationLabel.text = matrixVector[matrixSelected1].name + " - " + matrixVector[matrixSelected2].name
+        } else {
+            
+            let alert = UIAlertController(title: "Error", message: "The matrices must have the same dimensions to subtract from each other.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true, completion:  nil)
+        
+        }
     }
     @IBAction func multiplyButton(_ sender: Any) {
         if matrixSelected1 == -1 || matrixVector.count < 2 {
@@ -60,8 +78,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func calculateMultiply () {
         savedMatrix = mult(a: matrixVector[matrixSelected1], b: matrixVector[matrixSelected2])
-        setOutput(mat : savedMatrix)
         operatorString = ""
+
+        if(valid()) {
+            setOutput(mat: savedMatrix)
+            equationLabel.text = matrixVector[matrixSelected1].name + " x " + matrixVector[matrixSelected2].name
+        } else {
+            let alert = UIAlertController(title: "Error", message: "The matrices must have common dimension to multiply together.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true, completion:  nil)
+        }
+
     }
     
     
@@ -73,7 +100,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tempMat : Matrix = matrixVector[matrixSelected1]
         savedMatrix = inverse(a: tempMat)
         
-        setOutput(mat: savedMatrix)
+        if !valid() {
+            
+            let alert = UIAlertController(title: "Error", message: "The matrix must be square (1x1, 2x2, etc) for it to have an inverse", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true, completion:  nil)
+            
+        } else if savedMatrix.getSpot(rowSpot: 0, colSpot: 0) == Float.greatestFiniteMagnitude {
+            
+            let alert = UIAlertController(title: "Error", message: "This matrix has determinant 0, so it has no inverse", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true, completion:  nil)
+            
+        } else {
+            equationLabel.text = matrixVector[matrixSelected1].name + "^(-1)"
+            setOutput(mat: savedMatrix)
+        }
     }
     @IBAction func transposeButton(_ sender: Any) {
         if matrixSelected1 == -1 {
@@ -82,6 +124,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tempMat : Matrix = matrixVector[matrixSelected1]
         savedMatrix = transpose(a: tempMat)
         
+        equationLabel.text = matrixVector[matrixSelected1].name + "^T"
         setOutput(mat: savedMatrix)
     }
     @IBAction func determinantButton(_ sender: Any) {
@@ -93,23 +136,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         savedMatrix = Matrix(row: 1, col: 1)
         savedMatrix.setSpot(rowSpot: 0, colSpot: 0, val: tempFloat)
         
-        setOutput(mat: savedMatrix)
+        if(valid()) {
+            equationLabel.text = "det(" + matrixVector[matrixSelected1].name + ") "
+            setOutput(mat: savedMatrix)
+        } else {
+            let alert = UIAlertController(title: "Error", message: "The matrix must be square (1x1, 2x2, etc) for it to have a determinant", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true, completion:  nil)
+        }
     }
 
     
 
     @IBAction func saveAction(_ sender: Any) {
-        if savedMatrix.getSpot(rowSpot: 0, colSpot: 0) == Float.leastNormalMagnitude {
+        if !valid() {
             return
         }
         saveObj.isHidden = true
         
-        
-        
         //Popup
         let alert = UIAlertController(title: "Matrix name: ", message: "", preferredStyle: .alert)
-        
-        
         
         alert.addTextField { (Name) in
             Name.keyboardType = UIKeyboardType.asciiCapable
@@ -119,21 +165,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
             
             let name = alert?.textFields![0]
-            
             self.savedMatrix.name = (name?.text!)!
             
             self.matrixVector.append(self.savedMatrix)
-            
             self.tableView.reloadData()
             
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default))
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
-
-        
     }
     
     
@@ -153,10 +195,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func clearScreen(_ sender: Any) {
         clearOutput()
         clearInput()
+        equationLabel.text = ""
     }
     @IBAction func clearTable(_ sender: Any) {
-        matrixVector.removeAll()
-        self.tableView.reloadData()
+        let alert = UIAlertController(title: "Warning", message: "Are you sure? This will delete all values currently stored.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [weak alert] (_) in
+            self.matrixVector.removeAll()
+            self.tableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default))
+        
+        self.present(alert, animated: true, completion:  nil)
+        
     }
     @IBAction func createMatrixButton(_ sender: Any) {
         
@@ -190,15 +240,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let columnsString = alert?.textFields![2]
             let columns = Int((columnsString?.text)!)
             
-            let matrixAux = Matrix(row: rows!, col: columns!)
-            matrixAux.name = (name?.text!)!
+            if rows != nil && rows! > 0 && columns != nil && columns! > 0 {
+                let matrixAux = Matrix(row: rows!, col: columns!)
+                matrixAux.name = (name?.text!)!
             
-            self.matrixVector.append(matrixAux)
-            self.tableView.reloadData()
-            self.setMatrix(matrixToSet : matrixAux, index1: 0)
+                self.matrixVector.append(matrixAux)
+                self.tableView.reloadData()
+                self.setMatrix(matrixToSet : matrixAux, index1: 0)
+            } else {
+                let alert2 = UIAlertController(title: "Error", message: "You must input a positive integer for Row and Column", preferredStyle: .alert)
+                alert2.addAction(UIAlertAction(title: "Ok", style: .default))
+                
+                self.present(alert2, animated: true, completion:  nil)
+            }
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default))
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
@@ -248,7 +305,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
         
         saveObj.isHidden = true
-        saveObj.addTarget(self, action: "saveAction:", for: UIControlEvents.touchUpInside)
+        saveObj.addTarget(self, action: #selector(ViewController.saveAction(_:)), for: UIControlEvents.touchUpInside)
+        
+        equationLabel.layer.borderColor = UIColor.green.cgColor;
+        equationLabel.layer.borderWidth = 2.0;
+        equationLabel.textAlignment = .center
+        
+        equationLabel.text = ""
+        self.view.addSubview(equationLabel)
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "matrixCell")
     }
@@ -274,7 +338,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(operatorString)
         
         switch operatorString {
         case "Add":
@@ -289,6 +352,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         default:
             matrixSelected1 = indexPath.row
             clearOutput()
+            equationLabel.text = matrixVector[matrixSelected1].name
         }
         
         matrixSelected1 = indexPath.row
@@ -302,7 +366,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let c : Int = mat.col
         
         for i in 0..<c {
-            inputLabels.append(UILabel(frame: CGRect(x: 300-35*c+70*i, y: 150-10*r, width: 70, height: 20*r)))
+            inputLabels.append(UILabel(frame: CGRect(x: 280-30*c+60*i, y: 175-10*r, width: 60, height: 20*r)))
             
             inputLabels[i].layer.borderColor = UIColor.blue.cgColor;
             inputLabels[i].layer.borderWidth = 1.0;
@@ -318,7 +382,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func clearInput() {
         let val = inputLabels.count
         for _ in 0..<val {
-            inputLabels[0].frame = CGRect(x: 250, y: 150, width: 0, height: 0)
+            inputLabels[0].frame = CGRect(x: 280, y: 175, width: 0, height: 0)
             inputLabels.remove(at: 0)
         }
     }
@@ -330,7 +394,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let c : Int = mat.col
         
         for i in 0..<c {
-            outputLabels.append(UILabel(frame: CGRect(x: 550-35*c+70*i, y: 150-10*r, width: 70, height: 20*r)))
+            outputLabels.append(UILabel(frame: CGRect(x: 530-30*c+60*i, y: 175-10*r, width: 60, height: 20*r)))
             
             outputLabels[i].layer.borderColor = UIColor.red.cgColor;
             outputLabels[i].layer.borderWidth = 1.0;
@@ -348,10 +412,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let val = outputLabels.count
         for _ in 0..<val {
-            outputLabels[0].frame = CGRect(x: 550, y: 150, width: 0, height: 0)
+            outputLabels[0].frame = CGRect(x: 530, y: 175, width: 0, height: 0)
             outputLabels.remove(at: 0)
         }
         saveObj.isHidden = true
+    }
+    
+    func valid() -> Bool {
+        return savedMatrix.getSpot(rowSpot: 0, colSpot: 0) != Float.leastNormalMagnitude
     }
 }
 
