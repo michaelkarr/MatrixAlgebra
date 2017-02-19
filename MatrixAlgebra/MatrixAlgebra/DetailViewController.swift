@@ -39,17 +39,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @IBAction func multiplyButton(_ sender: Any) {
     }
-    @IBAction func minusButton(_ sender: Any) {
+    @IBAction func minusBUtton(_ sender: Any) {
     }
-    @IBAction func plusButton(_sender: Any) {
+    @IBAction func plusButton(_ sender: Any) {
     }
-    @IBAction func clearScreenButton(_ sender: Any) {
+    @IBAction func clearScreen(_ sender: Any) {
     }
-    @IBAction func clearTableButton(_ sender: Any) {
+    @IBAction func clearTable(_ sender: Any) {
         print("Clear Table")
     }
-    @IBAction func newMatrixButton(_ sender: Any) {
-        
+    @IBAction func createMatrixButton(_ sender: Any) {
         //1. Create the alert controller.
         let alert = UIAlertController(title: "New Matrix", message: "", preferredStyle: .alert)
         
@@ -83,7 +82,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     

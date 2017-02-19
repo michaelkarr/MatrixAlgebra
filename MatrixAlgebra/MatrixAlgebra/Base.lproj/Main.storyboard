@@ -67,54 +67,85 @@
                                 <rect key="frame" x="129" y="325" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="plusButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="zLG-Nv-FxF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLB-ZI-xyc">
                                 <rect key="frame" x="188" y="325" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="-"/>
+                                <connections>
+                                    <action selector="minusBUtton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="zFR-f1-Wcx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVc-dw-zs0">
                                 <rect key="frame" x="244" y="325" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="x"/>
+                                <connections>
+                                    <action selector="multiplyButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="7Rq-bu-H4g"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQw-Hb-7i7">
                                 <rect key="frame" x="302" y="325" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Inverse"/>
+                                <connections>
+                                    <action selector="inverseButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="vVi-Km-gNi"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oT-2K-970">
                                 <rect key="frame" x="379" y="325" width="72" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Transpose"/>
+                                <connections>
+                                    <action selector="transposeButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="CAY-TG-DrU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phl-Dw-fVA">
                                 <rect key="frame" x="471" y="325" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cofactor"/>
+                                <connections>
+                                    <action selector="cofactorButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="WV0-pa-TVr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNB-Zg-mLa">
                                 <rect key="frame" x="549" y="325" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Determinant"/>
+                                <connections>
+                                    <action selector="determinantButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="F8D-TP-zuf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bf-ub-ov6">
                                 <rect key="frame" x="20" y="6" width="115" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="New Matrix"/>
+                                <connections>
+                                    <action selector="createMatrixButton:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="v9M-zZ-4nv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5m3-FC-fZI">
                                 <rect key="frame" x="288" y="19" width="99" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Clear Table"/>
+                                <connections>
+                                    <action selector="clearTable:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="9pg-qx-S1U"/>
+                                    <action selector="test:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="fOc-dk-fnz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3F-OV-FcP">
                                 <rect key="frame" x="517" y="19" width="117" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Clear Screen"/>
+                                <connections>
+                                    <action selector="clearScreen:" destination="KVS-Fx-GiB" eventType="touchUpInside" id="bsg-wD-6MB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
