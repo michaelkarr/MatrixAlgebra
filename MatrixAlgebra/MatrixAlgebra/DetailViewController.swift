@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @IBAction func removeLastButton(_ sender: Any) {
         if self.matrixVector.count > 0 {
-            self.matrixVector.remove(at: 0)
+            self.matrixVector.remove(at: matrixVector.count - 1)
             self.tableView.reloadData()
         }
     }
@@ -89,10 +89,66 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.matrixVector.append(matrixAux)
             self.tableView.reloadData()
+            self.setMatrix(matrixToSet : matrixAux)
         }))
- 
+        
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func setMatrix(matrixToSet : Matrix) {
+        
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Lets", message: "", preferredStyle: .alert)
+        
+        //2. Add the text fields. Name, Rows and Columns.
+        for index1 in 1..<matrixToSet.row {
+            for index2 in 1..<matrixToSet.col  {
+                matrixToSet.setSpot(rowSpot: index1, colSpot: index2, val: 0)
+                print ("\(matrixToSet.getSpot(rowSpot: index1, colSpot: index2)) ")
+            }
+            print ("\n")
+        }
+        
+        
+        //        alert.addTextField { (Name) in
+        //            Name.placeholder = "Name"
+        //            Name.keyboardType = UIKeyboardType.asciiCapable
+        //
+        //        }
+        //
+        //        alert.addTextField { (Rows) in
+        //            Rows.placeholder = "Rows"
+        //            Rows.keyboardType = UIKeyboardType.asciiCapable
+        //        }
+        //
+        //        alert.addTextField { (Columns) in
+        //            Columns.placeholder = "Columns"
+        //            Columns.keyboardType = UIKeyboardType.asciiCapable
+        //        }
+        //
+        //        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        //        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+        //
+        //            let name = alert?.textFields![0]
+        //
+        //            let rowsString = alert?.textFields![1]
+        //            let rows = Int((rowsString?.text)!)
+        //
+        //            let columnsString = alert?.textFields![2]
+        //            let columns = Int((columnsString?.text)!)
+        //
+        //            let matrixAux = Matrix(row: rows!, col: columns!)
+        //            matrixAux.name = (name?.text!)!
+        //
+        //            self.matrixVector.append(matrixAux)
+        //            self.tableView.reloadData()
+        //        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+        
+        
     }
  
     // Overrides
@@ -118,15 +174,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "matrixCell")! as UITableViewCell
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         let temp: Matrix = self.matrixVector[indexPath.row]
         let str1 = String(temp.row)
         let str2 = String(temp.col)
         
         cell.textLabel?.text = temp.name
         cell.detailTextLabel?.text = (str1 + " x " + str2)
-        
-        print(str1 + " x " + str2)
         return cell
     }
     
