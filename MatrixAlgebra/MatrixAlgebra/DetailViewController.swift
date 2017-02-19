@@ -55,24 +55,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     @IBAction func createMatrixButton(_ sender: Any) {
+        
         //1. Create the alert controller.
         let alert = UIAlertController(title: "New Matrix", message: "", preferredStyle: .alert)
         
         //2. Add the text fields. Name, Rows and Columns.
-        alert.addTextField { (Name) in
-            Name.text = "Name"
-        }
-        
-        alert.addTextField { (Rows) in
-            Rows.text = "Rows"
-        }
-        
-        alert.addTextField { (Columns) in
-            Columns.text = "Columns"
-        }
+         alert.addTextField { (Name) in
+         Name.keyboardType = UIKeyboardType.asciiCapable
+         Name.placeholder = "Name"
+         
+         }
+         
+         alert.addTextField { (Rows) in
+         Rows.keyboardType = UIKeyboardType.asciiCapable
+         Rows.placeholder = "Rows"
+         }
+         
+         alert.addTextField { (Columns) in
+         Columns.keyboardType = UIKeyboardType.asciiCapable
+         Columns.placeholder = "Columns"
+         }
         
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+            
             let name = alert?.textFields![0]
             
             let rowsString = alert?.textFields![1]
@@ -87,12 +93,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.matrixVector.append(matrixAux)
             self.tableView.reloadData()
         }))
-        
+ 
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
+ 
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,7 +140,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 extension Float {
     var cleanValue: Float {
-        return self.truncatingRemainder(dividingBy: 1.0)
+        return self.truncatingRemainder(dividingBy: 1)
     }
 }
 
