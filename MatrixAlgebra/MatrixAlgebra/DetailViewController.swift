@@ -102,12 +102,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let alert = UIAlertController(title: "Lets", message: "", preferredStyle: .alert)
         
         //2. Add the text fields. Name, Rows and Columns.
-        for index1 in 1..<matrixToSet.row {
-            for index2 in 1..<matrixToSet.col  {
+        for index1 in 0..<matrixToSet.row {
+            for index2 in 0..<matrixToSet.col  {
                 matrixToSet.setSpot(rowSpot: index1, colSpot: index2, val: 0)
-                print ("\(matrixToSet.getSpot(rowSpot: index1, colSpot: index2)) ")
             }
-            print ("\n")
         }
         
         
