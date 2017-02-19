@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func determinantButton(_ sender: Any) {
         print(matrixVector.count)
+        print("\(matrixVector[matrixVector.count-1].description)")
     }
     @IBAction func cofactorButton(_ sender: Any) {
     }
@@ -90,43 +91,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.matrixVector.append(matrixAux)
             self.tableView.reloadData()
-            self.setMatrix(matrixToSet : matrixAux, index1: 0, index2: 0)
+            self.setMatrix(matrixToSet : matrixAux, index1: 0)
         }))
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
     }
     
-    func setMatrix(matrixToSet : Matrix, index1: Int, index2: Int) {
+    func setMatrix(matrixToSet : Matrix, index1: Int) {
         
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Lets", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Col: \(index1 + 1)", message: "", preferredStyle: .alert)
         
-        //2. Open add text fields repeteadly in the pop-up. elem is got.
-        
-        alert.addTextField { (element) in
-            element.placeholder = "Row: \(index1 + 1) Col: \(index2 + 1)"
-            element.keyboardType = UIKeyboardType.asciiCapable
+        for i in 0..<matrixToSet.row {
+            
+            //2. Open add text fields repeteadly in the pop-up. elem is got.
+            alert.addTextField { (elementRow) in
+                elementRow.placeholder = "Row: \(i + 1)"
+                elementRow.keyboardType = UIKeyboardType.asciiCapable
+            }
         }
         
-        //3. Popping up and getting values
-        alert.addAction(UIAlertAction(title: "Set Value", style: .default, handler: { [weak alert] (_) in
+            //3. Popping up and getting values
+            alert.addAction(UIAlertAction(title: "Set Value", style: .default, handler: { [weak alert] (_) in
+                
+                let elementRowString = alert?.textFields![0]
+                let elementRow = Float((elementRowString?.text)!)
+                
+                for i in 0..<matrixToSet.row {
+                    matrixToSet.setSpot(rowSpot: i, colSpot: index1, val: elementRow!)
+                }
+                
+                if index1 != matrixToSet.row-1 {
+                    print("Here")
+                    self.setMatrix(matrixToSet : matrixToSet, index1: index1 + 1)
+                }
             
-            let elementString = alert?.textFields![0]
-            let element = Float((elementString?.text)!)
-            
-            matrixToSet.setSpot(rowSpot: index1, colSpot: index2, val: element!)
-            
-            if index2 != matrixToSet.col-1 {
-                self.setMatrix(matrixToSet : matrixToSet, index1: index1, index2: index2 + 1)
-            } else if index1 != matrixToSet.row-1{
-                self.setMatrix(matrixToSet : matrixToSet, index1: index1 + 1, index2: 0)
-            }
-            
-        }))
+            }))
         
-        // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
+            
+            // 4. Present the alert.
+            self.present(alert, animated: true, completion: nil)
         
     }
  
