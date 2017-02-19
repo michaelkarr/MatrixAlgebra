@@ -17,13 +17,32 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
-    let inputLabel1 = UILabel(frame: CGRect(x: 250, y: 150, width: 0, height: 0))
-    let outputLabel = UILabel(frame: CGRect(x: 550, y: 150, width: 0, height: 0))
+    var inputLabel1 = UILabel(frame: CGRect(x: 250, y: 150, width: 0, height: 0))
+    var outputLabel = UILabel(frame: CGRect(x: 550, y: 150, width: 0, height: 0))
     
     var matrixVector = [Matrix]()
     var matrixSelected1 : Int = -1
+    var savedMatrix = Matrix(row: 1, col: 1)
     
     @IBAction func determinantButton(_ sender: Any) {
+        if matrixSelected1 == -1 {
+            return
+        }
+        let tempMat : Matrix = matrixVector[matrixSelected1]
+        let tempFloat : Float = det(a: tempMat)
+        savedMatrix = Matrix(row: 1, col: 1)
+        savedMatrix.setSpot(rowSpot: 0, colSpot: 0, val: tempFloat)
+        
+        outputLabel.frame = CGRect(x: 550, y: 150, width: 100, height: 100)
+        
+        outputLabel.layer.borderColor = UIColor.red.cgColor;
+        outputLabel.layer.borderWidth = 3.0;
+        outputLabel.textAlignment = .center
+        
+        outputLabel.numberOfLines = savedMatrix.row + 1;
+        
+        outputLabel.text = savedMatrix.description
+        self.view.addSubview(outputLabel)
     }
     @IBAction func cofactorButton(_ sender: Any) {
     }
@@ -41,15 +60,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.matrixVector.append(matrixTemp)
         self.tableView.reloadData()
     }
-    
-    
-    @IBAction func removeSelectedButton(_ sender: Any) {
+    @IBAction func RemoveSelected(_ sender: Any) {
         if self.matrixSelected1 != -1 {
             self.matrixVector.remove(at: self.matrixSelected1)
             self.matrixSelected1 = -1
             self.tableView.reloadData()
         }
         inputLabel1.frame = CGRect(x: 250, y: 150, width: 0, height: 0)
+        outputLabel.frame = CGRect(x: 250, y: 150, width: 0, height: 0)
     }
     @IBAction func clearScreen(_ sender: Any) {
     }
@@ -178,10 +196,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         inputLabel1.layer.borderColor = UIColor.blue.cgColor;
         inputLabel1.layer.borderWidth = 3.0;
-        
+        inputLabel1.textAlignment = .center
+
         inputLabel1.numberOfLines = matrixVector[indexPath.row].row + 1;
         
-        inputLabel1.textAlignment = .center
         inputLabel1.text = matrixVector[indexPath.row].description
         self.view.addSubview(inputLabel1)
     }
