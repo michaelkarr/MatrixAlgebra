@@ -18,8 +18,8 @@ class Matrix {
     init (row: Int, col: Int) {
         self.row = row
         self.col = col
-        for _ in 0..<col {
-            arr.append(Array(repeating:Float(), count:row))
+        for _ in 0..<row {
+            arr.append(Array(repeating:Float(), count:col))
         }
         print("array \(arr)")
     }
@@ -54,5 +54,16 @@ class Matrix {
         } else {
             return false
         }
+    }
+    
+    public var description: String {
+        var toReturn: String = ""
+        for i in 0..<self.row {
+            for j in 0..<self.col {
+                toReturn += String(self.arr[i][j]) + " "
+            }
+            toReturn += "\n"
+        }
+        return toReturn
     }
 }

@@ -47,7 +47,7 @@ func mult(a: Matrix, b: Matrix) -> Matrix {
             for p in 0..<b.col {
                 var sum: Float = 0
                 for n in 0..<a.col {
-                    sum += a.getSpot(rowSpot: m, colSpot: n) + b.getSpot(rowSpot: p, colSpot: n)
+                    sum += a.getSpot(rowSpot: m, colSpot: n) * b.getSpot(rowSpot: n, colSpot: p)
                 }
                 matrixC.setSpot(rowSpot: m, colSpot: p, val: sum)
             }
@@ -60,7 +60,7 @@ func mult(a: Matrix, b: Matrix) -> Matrix {
     }
 }
 
-func traspose(a: Matrix) -> Matrix {
+func transpose(a: Matrix) -> Matrix {
     let matrixC = Matrix(row: a.col, col: a.row)
     for m in 0..<a.row {
         for n in 0..<a.col {
@@ -70,27 +70,54 @@ func traspose(a: Matrix) -> Matrix {
     return matrixC
 }
 
-func det(a: Matrix) -> Float {
-    if (validate1Dim(a: a)) {
-        var det: Float = 0
-        
-        return det
-    } else {
-        return Float.leastNormalMagnitude
+/*func cof(a: Matrix) -> Matrix {
+    
+}*/
+
+func minor(a: Matrix, i: Int, j: Int) -> Matrix {
+    let matrixC = Matrix(row: a.row-1, col: a.col-1)
+    for m in 0..<a.row {
+        if (m != i) {
+            for n in 0..<a.col {
+                if (n != j) {
+                    matrixC.setSpot(rowSpot: (m < i) ? m : m-1, colSpot: (n < j) ? n : n-1, val: a.getSpot(rowSpot: m, colSpot: n))
+                }
+            }
+        }
     }
+    return matrixC
 }
 
-func delCol(array: inout Array<Array<Float>>, arrCol: Int) -> Array<Array<Float>> {
+func cofactor(a: Matrix, i: Int, j: Int) -> Float {
+    let matrixC = minor(a: a, i: i, j: j)
+    return ((((i+j) % 2) == 0) ? 1 : -1) * det(a: matrixC)
+}
+
+func det(a: Matrix) -> Float {
+    if (!validateSquare(a: a)) {
+        return Float.leastNormalMagnitude
+    }
+    if a.row == 1 {
+        return a.getSpot(rowSpot: 0, colSpot: 0)
+    }
+    var returnDet: Float = 0
+        for m in 0..<a.row {
+            returnDet += a.getSpot(rowSpot: 0, colSpot: m) * cofactor(a: a, i: 0, j: m)
+    }
+    return returnDet
+}
+
+/*func delCol(array: Array<Array<Float>>, arrCol: Int) -> Array<Array<Float>> {
     for i in 0..<array.capacity {
         array[i].remove(at: arrCol)
     }
     return array
 }
 
-func delRow(array: inout Array<Array<Float>>, arrRow: Int) -> Array<Array<Float>> {
+func delRow(array: Array<Array<Float>>, arrRow: Int) -> Array<Array<Float>> {
     array.remove(at: arrRow)
     return array
-}
+}*/
 
 func validate2DimSum(a: Matrix, b: Matrix) -> Bool {
     return a.col == b.col && a.row == b.row ? true : false
@@ -101,6 +128,6 @@ func validate2DimMult(a: Matrix, b: Matrix) -> Bool {
 }
 
 
-func validate1Dim(a: Matrix) -> Bool {
+func validateSquare(a: Matrix) -> Bool {
     return a.row == a.col ? true : false
 }
